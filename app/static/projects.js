@@ -25,11 +25,15 @@
         const link = document.createElement("a");
         const title = document.createElement("strong");
         const meta = document.createElement("span");
+        const state = document.createElement("span");
         link.href = "/recommendations?analysis=" + encodeURIComponent(project.analysis_id);
         title.textContent = project.title || (project.mode === "transcription" ? "음성 전사" : "쇼츠 프로젝트");
-        meta.textContent = [states[project.status], date.format(new Date(project.created_at)),
+        state.className = "studio-project-status";
+        state.dataset.state = project.status;
+        state.textContent = states[project.status] || "상태 확인 필요";
+        meta.textContent = [date.format(new Date(project.created_at)),
           project.candidate_count ? project.candidate_count + "개 후보" : null].filter(Boolean).join(" · ");
-        link.append(title, meta);
+        link.append(state, title, meta);
         item.append(link);
         list.append(item);
       }
