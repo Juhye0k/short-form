@@ -13,24 +13,31 @@
   <script src="/static/projects.js" defer></script>
   <script src="/static/local-upload.js" defer></script>
 </head>
-<body class="studio">
+<body class="studio studio-workspace">
   <header class="studio-header">
     <a class="brand" href="/" aria-label="Shortform 홈"><b aria-hidden="true">▶</b> Shortform</a>
-    <nav aria-label="제작 메뉴">
-      <a href="/#new-project">새 쇼츠</a><a href="/#projects">내 프로젝트</a>
-      <a class="studio-nav-secondary" href="/extract">10초 추출</a>
-    </nav>
+    <span class="workspace-label">쇼츠 제작실</span>
   </header>
+  <div class="studio-shell">
+  <nav class="studio-sidebar" aria-label="제작 메뉴">
+    <a class="studio-nav-create" href="/#new-project"><span aria-hidden="true">＋</span> 새 쇼츠</a>
+    <a href="/#projects"><span aria-hidden="true">▤</span> 내 프로젝트</a>
+    <a href="/extract"><span aria-hidden="true">◷</span> 10초 추출</a>
+    <a class="studio-nav-separator" href="/sns"><span aria-hidden="true">↗</span> YouTube 게시</a>
+    <a href="/verification"><span aria-hidden="true">✓</span> 검증 도구</a>
+  </nav>
   <main class="studio-main">
     <section id="new-project" class="studio-create">
       <div class="studio-intro">
-        <h1>긴 영상에서<br>쇼츠를 만드세요</h1>
-        <p>영상을 넣으면 한국어 대화를 분석해 30~60초 하이라이트를 최대 5개 추천합니다.</p>
+        <h1>새 쇼츠 만들기</h1>
+        <p>영상 링크나 파일에서 30~60초 하이라이트를 최대 5개 추천받으세요.</p>
       </div>
       <div class="studio-input">
         <form id="analysis-form">
-          <label for="url">영상 링크</label>
-          <input id="url" type="url" required maxlength="4096" placeholder="YouTube 링크 또는 MP4 주소">
+          <div class="studio-source">
+            <label for="url">영상 링크</label>
+            <input id="url" type="url" required maxlength="4096" placeholder="YouTube 링크 또는 MP4 주소">
+          </div>
           <details id="local-upload-options"><summary>내 컴퓨터에서 영상 선택</summary></details>
           <div class="studio-options">
             <div><label for="mode">작업 선택</label><select id="mode"><option value="recommendation">하이라이트 추천</option><option value="transcription">음성 전사만 확인</option></select></div>
@@ -63,23 +70,27 @@
         <a href="/#local-upload-options">영상 파일로 다시 시작</a>
       </div>
       <div id="candidate-workspace" class="studio-results" hidden>
-        <div class="studio-panel">
+        <div class="studio-panel studio-candidate-list">
           <h2>추천 구간 <span id="candidate-count"></span></h2>
           <div id="candidates"></div>
         </div>
         <section class="studio-panel studio-preview" aria-label="선택한 후보">
-          <h2 id="clip-title"></h2>
-          <p id="clip-timing"></p>
-          <video id="clip-preview" controls playsinline preload="metadata" aria-label="선택한 후보 미리보기"></video>
+          <div class="studio-preview-stage">
+            <video id="clip-preview" controls playsinline preload="metadata" aria-label="선택한 후보 미리보기"></video>
+          </div>
           <p id="clip-state" role="status"></p>
           <button id="play-candidate" class="secondary studio-fit" type="button">선택 구간 재생</button>
+        </section>
+        <section class="studio-panel studio-inspector" aria-labelledby="clip-title">
+          <h2 id="clip-title"></h2>
+          <p id="clip-timing"></p>
+          <p id="clip-reason"></p>
           <div class="studio-actions">
             <a id="clip-edit" class="studio-primary">자막 편집</a>
             <a id="clip-download" hidden>MP4 다운로드</a>
             <a id="clip-srt" hidden>SRT 다운로드</a>
             <a id="clip-sns" hidden>YouTube 업로드</a>
           </div>
-          <p id="clip-reason"></p>
           <details>
             <summary>전사 내용과 추천 근거</summary>
             <p id="clip-scores"></p><p id="clip-transcript"></p>
@@ -105,6 +116,6 @@
       <button id="project-more" type="button" class="secondary studio-fit" hidden>프로젝트 더 보기</button>
     </section>
   </main>
-  <footer class="studio-footer"><a href="/verification">검증 도구</a><a href="/sns">YouTube 채널 연결</a></footer>
+  </div>
 </body>
 </html>

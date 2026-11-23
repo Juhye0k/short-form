@@ -10,7 +10,7 @@
   <script src="/static/sns.js" defer></script>
 </head>
 <body class="studio">
-<header class="studio-header"><a href="/" class="brand"><b aria-hidden="true">▶</b> Shortform</a><a id="sns-back" href="/#projects">프로젝트 목록</a></header>
+<header class="studio-header"><a href="/" class="brand"><b aria-hidden="true">▶</b> Shortform</a><a id="sns-back" class="studio-back" href="/#projects">← 프로젝트 목록</a></header>
 <main class="studio-main sns-page">
   <section class="studio-section-heading">
     <div><h1>YouTube에 게시</h1><p>영상과 채널, 제목, 공개 범위를 확인하세요. 기본은 비공개입니다.</p></div>
@@ -25,7 +25,7 @@
     </div>
     <button id="reload" class="secondary" hidden>상태 다시 조회</button>
     <section id="account-panel" hidden>
-      <h2>1. 업로드 계정</h2>
+      <h2>업로드 계정</h2>
       <button id="connect" type="button">YouTube 계정 연결</button>
       <p class="hint">Google 동의 화면에서 업로드할 채널을 선택하세요.</p>
       <label for="account">연결된 YouTube 채널</label><select id="account"></select>
@@ -33,7 +33,7 @@
       <p class="hint">연결 해제는 이후 업로드를 차단합니다. 이미 전송 중인 작업은 취소되지 않습니다.</p>
     </section>
     <form id="upload-form" hidden>
-      <h2>2. 영상과 업로드 설정</h2>
+      <h2>영상과 업로드 설정</h2>
       <div id="job-field"><label for="job">완성한 영상 작업 번호</label><input id="job" required autocomplete="off"></div>
       <label for="title">YouTube 제목</label><input id="title" required maxlength="100">
       <label for="privacy">공개 범위</label>
@@ -43,7 +43,7 @@
       <button id="prepare" type="submit">업로드 내용 미리 확인</button>
     </form>
     <section id="review-panel" hidden>
-      <h2 id="upload-heading">3. 최종 업로드 확인</h2>
+      <h2 id="upload-heading">최종 업로드 확인</h2>
       <dl class="upload-details"><dt>채널</dt><dd id="review-channel"></dd><dt>제목</dt><dd id="review-title"></dd><dt>공개 범위</dt><dd id="review-privacy"></dd><dt>아동용</dt><dd id="review-kids"></dd><dt>출력 버전 (SHA-256)</dt><dd id="review-version"></dd></dl>
       <video id="sns-preview" controls preload="metadata"></video>
       <p id="upload-state" role="status"></p>
